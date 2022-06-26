@@ -1,0 +1,52 @@
+.followers {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 20px 20px;
+  height: 100%;
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__control {
+    margin-bottom: 20px;
+
+    input {
+      margin-right: 20px;
+    }
+
+    button {
+      margin-right: 10px;
+    }
+  }
+
+  &__list {
+    flex: 1 1 auto;
+    overflow-y: auto;
+
+    .followers__list-item {
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+    }
+
+    .card {
+      display: flex;
+
+      &__img {
+        margin-right: 15px;
+        border-radius: 50%;
+        height: 80px;
+        width: 80px;
+      }
+
+      &__body {
+        padding: 5px 0;
+
+        .card__user-name {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

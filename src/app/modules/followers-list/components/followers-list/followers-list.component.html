@@ -1,0 +1,27 @@
+<div class="followers">
+  <h1 class="followers__title">Followers for {{ currentUserName }}</h1>
+  <div class="followers__control">
+    <input #loginInput="ngModel" type="text" [(ngModel)]="userNameToSearch" loginValidator required>
+    <button (click)="onSearchFollowers()" [disabled]="loginInput.invalid">Get followers</button>
+    <ng-container *ngIf="loginInput.dirty">
+      <span class="error" *ngIf="loginInput.errors?.['invalidLogin']">User name must contain only latin letters and numbers</span>
+      <span class="error" *ngIf="loginInput.errors?.['required']">Required field</span>
+    </ng-container>
+  </div>
+
+  <ng-container *ngIf="followers.length; else noFollowers">
+    <ul class="followers__list">
+      <li class="followers__list-item card" *ngFor="let follower of followers">
+        <img class="card__img" [src]="follower.avatarUrl" alt="no photo">
+        <div class="card__body">
+          <h4 class="card__user-name">{{ follower.login }}</h4>
+          <a target="_blank" [href]="follower.url">{{ follower.url }}</a>
+        </div>
+      </li>
+    </ul>
+  </ng-container>
+</div>
+
+<ng-template #noFollowers>
+  <ng-container *ngIf="currentUserName">This user has no followers</ng-container>
+</ng-template>
