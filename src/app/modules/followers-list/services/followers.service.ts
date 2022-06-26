@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { IGithubResponseFollower, IGitHubUser } from '../models/interfaces';
+import { catchError, map } from 'rxjs/operators';
 
 /** Сервис для работы с подписчиками GitHub */
 @Injectable({

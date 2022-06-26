@@ -6,7 +6,7 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
   selector: '[loginValidator]',
   providers: [
     { provide: NG_VALIDATORS, useExisting: LoginValidatorDirective, multi: true },
-  ]
+  ],
 })
 export class LoginValidatorDirective implements Validator {
 
@@ -17,7 +17,7 @@ export class LoginValidatorDirective implements Validator {
 
     return new RegExp('^[0-9a-zA-Z]+$').test(control.value)
       ? null
-      : { invalidLogin: true }
+      : { invalidLogin: true };
   }
 
 }

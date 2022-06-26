@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { FollowersService } from '../../services';
 import { IGitHubUser } from '../../models/interfaces';
-import { take } from 'rxjs';
 import { NgModel } from '@angular/forms';
+import { take } from 'rxjs/operators';
 
 /** Компонент для поиска подписчиков github по наименованию пользователя */
 @Component({

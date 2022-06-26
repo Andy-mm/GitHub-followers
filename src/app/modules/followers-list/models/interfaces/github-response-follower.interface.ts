@@ -1,4 +1,4 @@
-/** Интерфейс подписчика в ответе github-а */
+/** Интерфейс подписчика в ответе GitHub-а */
 export interface IGithubResponseFollower {
   /** логин */
   "login": string;
