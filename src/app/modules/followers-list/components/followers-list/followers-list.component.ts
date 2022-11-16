@@ -2,7 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { FollowersService } from '../../services';
 import { IGitHubUser } from '../../models/interfaces';
 import { NgModel } from '@angular/forms';
-import { take } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+import { Observable, of } from "rxjs";
 
 /** Компонент для поиска подписчиков github по наименованию пользователя */
 @Component({
@@ -21,7 +22,7 @@ export class FollowersListComponent {
   public currentUserName: string = '';
 
   /** Подписчики */
-  public followers: IGitHubUser[] = [];
+  public followers$: Observable<IGitHubUser[]> = of([]);
 
   constructor(
     private readonly followersService: FollowersService,
@@ -34,12 +35,9 @@ export class FollowersListComponent {
   public onSearchFollowers(): void {
     if (this.loginInput?.invalid || !this.userNameToSearch.length) return;
 
-    this.followersService.getFollowersFor(this.userNameToSearch)
-      .pipe(take(1))
-      .subscribe((followers: IGitHubUser[]) => {
-        this.followers = followers;
-        this.currentUserName = this.userNameToSearch;
-      })
+    this.followers$ = this.followersService.getFollowersFor(this.userNameToSearch)
+      .pipe(
+        tap(() => this.currentUserName = this.userNameToSearch)
+      )
   }
-
 }

@@ -9,9 +9,9 @@
     </ng-container>
   </div>
 
-  <ng-container *ngIf="followers.length; else noFollowers">
+  <ng-container *ngIf="(followers$ | async)?.length; else noFollowers">
     <ul class="followers__list">
-      <li class="followers__list-item card" *ngFor="let follower of followers">
+      <li class="followers__list-item card" *ngFor="let follower of followers$ | async">
         <img class="card__img" [src]="follower.avatarUrl" alt="no photo">
         <div class="card__body">
           <h4 class="card__user-name">{{ follower.login }}</h4>
